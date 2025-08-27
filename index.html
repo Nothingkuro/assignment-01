@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Random User Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container py-4">
+        <header class="text-center mb-4">
+            <h1 class="h2">Random User Generator</h1>
+            <p class="text-muted">Generate random user profiles using the Random User API</p>
+        </header>
+        
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-4">
+                        <label for="userCount" class="form-label">Number of Users (0-1000)</label>
+                        <input type="number" class="form-control" id="userCount" min="0" max="1000" value="5">
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <label for="nameFormat" class="form-label">Name Format</label>
+                        <select class="form-select" id="nameFormat">
+                            <option value="first">First Name</option>
+                            <option value="last">Last Name</option>
+                            <option value="full" selected>Full Name</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <button id="generateBtn" class="btn btn-dark w-100">Generate Users</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="alert alert-danger d-none" id="errorMessage" role="alert"></div>
+        
+        <div class="text-center py-4 d-none" id="loadingIndicator">
+            <div class="spinner"></div>
+            <p class="mt-2">Loading users, please wait...</p>
+        </div>
+        
+        <div class="table-responsive">
+            <table class="table table-striped" id="usersTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Email Address</th>
+                        <th>Country</th>
+                    </tr>
+                </thead>
+                <tbody id="usersContainer">
+                    <!-- User data will be displayed here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
