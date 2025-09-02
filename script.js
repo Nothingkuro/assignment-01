@@ -6,7 +6,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const errorMessage = document.getElementById('errorMessage');
     const loadingIndicator = document.getElementById('loadingIndicator');
     const usersTable = document.getElementById('usersTable');
-    const modalBackdrop = document.getElementById('modalBackdrop');
+    
+    // Modal elements
+    const userModal = new bootstrap.Modal(document.getElementById('userModal'));
+    const editUserModal = new bootstrap.Modal(document.getElementById('editUserModal'));
     
     // Store users data
     let usersData = [];
@@ -101,31 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
             `${user.location.street.number} ${user.location.street.name}, ${user.location.city}, ${user.location.state}, ${user.location.country}, ${user.location.postcode}`;
         
         // Show modal
-        showModal('userModal');
-    }
-    
-    // Function to show modal
-    function showModal(modalId) {
-        const modal = document.getElementById(modalId);
-        modal.classList.add('show');
-        modal.style.display = 'block';
-        modal.setAttribute('aria-hidden', 'false');
-        
-        // Show backdrop
-        modalBackdrop.classList.remove('d-none');
-    }
-    
-    // Function to close modal
-    function closeModal(modalId) {
-        const modal = document.getElementById(modalId);
-        modal.classList.remove('show');
-        modal.style.display = 'none';
-        modal.setAttribute('aria-hidden', 'true');
-        
-        // Hide backdrop if no other modals are open
-        if (!document.querySelector('.modal.show')) {
-            modalBackdrop.classList.add('d-none');
-        }
+        userModal.show();
     }
     
     // Function to show error message
@@ -144,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (currentUserIndex !== -1) {
             usersData.splice(currentUserIndex, 1);
             displayUsers(usersData);
-            closeModal('userModal');
+            userModal.hide();
             currentUserIndex = -1;
         }
     }
@@ -165,8 +144,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 `${user.location.street.number} ${user.location.street.name}, ${user.location.city}, ${user.location.state}, ${user.location.country}, ${user.location.postcode}`;
             
             // Hide the user modal and show edit modal
-            closeModal('userModal');
-            showModal('editUserModal');
+            userModal.hide();
+            editUserModal.show();
         }
     }
     
@@ -186,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
             displayUsers(usersData);
             
             // Close the modal
-            closeModal('editUserModal');
+            editUserModal.hide();
         }
     }
     
@@ -211,26 +190,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Save changes button event
     document.getElementById('saveChangesBtn').addEventListener('click', saveUserChanges);
     
-    // Close modal when clicking on backdrop
-    modalBackdrop.addEventListener('click', function() {
-        closeModal('userModal');
-        closeModal('editUserModal');
-    });
-    
     // Initial load with empty container
     displayUsers([]);
 });
-
-// Global function to close modals (needed for HTML onclick)
-function closeModal(modalId) {
-    const modal = document.getElementById(modalId);
-    modal.classList.remove('show');
-    modal.style.display = 'none';
-    modal.setAttribute('aria-hidden', 'true');
-    
-    // Hide backdrop if no other modals are open
-    const modalBackdrop = document.getElementById('modalBackdrop');
-    if (!document.querySelector('.modal.show')) {
-        modalBackdrop.classList.add('d-none');
-    }
-}
