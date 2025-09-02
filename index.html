@@ -62,6 +62,96 @@
         </div>
     </div>
 
+    <!-- User Details Modal -->
+    <div class="modal" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="userModalLabel">User Details</h5>
+                    <button type="button" class="btn-close" onclick="closeModal('userModal')"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <img id="modalUserImage" src="" alt="User Image" class="img-fluid rounded-circle mb-3">
+                        </div>
+                        <div class="col-md-8">
+                            <h4 id="modalUserName" class="mb-3"></h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Email:</strong> <span id="modalUserEmail"></span></p>
+                                    <p><strong>Phone:</strong> <span id="modalUserPhone"></span></p>
+                                    <p><strong>Telephone:</strong> <span id="modalUserCell"></span></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Date of Birth:</strong> <span id="modalUserDob"></span></p>
+                                    <p><strong>Gender:</strong> <span id="modalUserGender"></span></p>
+                                    <p><strong>Address:</strong> <span id="modalUserAddress"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="deleteUserBtn">
+                        <span>🗑️</span> Delete
+                    </button>
+                    <button type="button" class="btn btn-primary" id="editUserBtn">
+                        <span>✏️</span> Edit
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('userModal')">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit User Modal -->
+    <div class="modal" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
+                    <button type="button" class="btn-close" onclick="closeModal('editUserModal')"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editUserForm">
+                        <input type="hidden" id="editUserId">
+                        <div class="mb-3">
+                            <label for="editFirstName" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="editFirstName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editLastName" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="editLastName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="editEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editPhone" class="form-label">Phone</label>
+                            <input type="text" class="form-control" id="editPhone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editCell" class="form-label">Cell</label>
+                            <input type="text" class="form-control" id="editCell">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editLocation" class="form-label">Address</label>
+                            <textarea class="form-control" id="editLocation" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('editUserModal')">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveChangesBtn">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-backdrop fade d-none" id="modalBackdrop"></div>
+
     <script src="script.js"></script>
 </body>
 </html>
