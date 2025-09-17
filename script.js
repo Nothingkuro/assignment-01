@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let usersData = [];
     let currentUserIndex = -1;
     
-    // Function to fetch users from the API
+    // Function to fetch users from the CUSTOM API
     async function fetchUsers(count) {
         if (count < 0 || count > 1000) {
             showError('Please enter a number between 0 and 1000');
@@ -29,7 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
         hideError();
         
         try {
-            const response = await fetch(`https://randomuser.me/api/?results=${count}`);
+            // Changed to use our custom API endpoint
+            const response = await fetch(`http://localhost:3000/api/?results=${count}`);
             
             if (!response.ok) {
                 throw new Error(`API responded with status ${response.status}`);
@@ -39,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             usersData = data.results;
             displayUsers(usersData);
         } catch (err) {
-            showError(`Failed to fetch users: ${err.message}. Please try again.`);
+            showError(`Failed to fetch users: ${err.message}. Please make sure the server is running.`);
         } finally {
             loadingIndicator.classList.add('d-none');
         }
