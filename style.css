@@ -21,3 +21,20 @@
 .container {
     max-width: 1200px;
 }
+
+/* Add pointer cursor to table rows */
+#usersContainer tr {
+    cursor: pointer;
+}
+
+/* Hover effect for table rows */
+#usersContainer tr:hover {
+    background-color: #f5f5f5 !important;
+}
+
+/* Modal image styling */
+#modalUserImage {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
